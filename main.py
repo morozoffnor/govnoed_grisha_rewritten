@@ -17,7 +17,7 @@ client = commands.Bot(command_prefix=[config['bot_prefix']])
 async def on_message(ctx):
     author = ctx.author
     content = ctx.content
-    print(f'{author}: {content}')
+    print(f'[CHAT] {author}: {content}')
     await client.process_commands(ctx)
 
 
@@ -30,6 +30,8 @@ async def on_ready():
     for s in activeGuilds:
         count += len(s.members)
     print(f"Servers connected: {len(client.guilds)}, Users: {count}")
+    activity = discord.Activity(name="Test build 0.7.4", type=discord.ActivityType.watching)
+    await client.change_presence(activity=activity)
 
 
 @client.command(hidden=True)
